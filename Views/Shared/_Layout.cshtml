@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - YoutubeChannel</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/YoutubeChannel.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://bootswatch.com/5/superhero/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    
+    
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70" tabindex="0">
+    <header>
+        <nav class="navbar navbar-expand-lg" id="navbar">
+            <div class="container-fluid">
+                <img src="~/img/youtubeLogo.png" alt="YouTube Logo" height="40" asp-controller="Home" asp-action="Index" />
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">YTChannelFinder</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link me-3" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-3" href="#about">About</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link me-3" href="#how-it-works">How it Works?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-3" href="#features-usage">Features & Usage</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <a asp-controller="YouTube" asp-action="Index" class="nav-link me-3">
+                    <i class="bi bi-search"></i> 
+                </a>
+
+                <fieldset class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="toggleMode()">
+                    <label class="form-check-label" for="flexSwitchCheckDefault" id="modeLabel">Light</label>
+                </fieldset>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" id="footer">
+        <div class="container py-4">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <span id="footer-text"><b>&copy; 2024 - YTChannelFinder</b></span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a asp-controller="Home" asp-action="Privacy" class="footer-link">Privacy</a></li>
+                        <li class="list-inline-item"> | </li>
+                        <li class="list-inline-item"><a asp-controller="Home" asp-action="ContactUs" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

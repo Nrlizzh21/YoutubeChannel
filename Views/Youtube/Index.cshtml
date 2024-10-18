@@ -1,0 +1,59 @@
+﻿@model List<YoutubeChannel.Models.YoutubeChannelModel>
+
+<div class="container mt-5">
+    <br />
+    <h2 class="mb-4 text-center">Search YouTube Channels</h2>
+
+    <form asp-action="Search" method="post" class="d-flex justify-content-center">
+        <input type="text" name="query" class="form-control w-50 rounded-pill border-2 shadow" placeholder="Search for channels or any keywords..." value="@ViewBag.Query">
+        <button type="submit" class="btn btn-primary rounded-pill ml-2 shadow">Search</button>
+    </form>
+
+    @if (ViewBag.IsSubmitted ?? false) // Handle potential null value
+    {
+        if (Model != null && Model.Any())
+        {
+            <br />
+            <br />
+            <div class="row">
+                @foreach (var channel in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card shadow-lg h-100 border-0" style="background: rgba(255, 255, 255, 0.2); border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
+                            <img class="card-img-top rounded-circle mx-auto mt-3" src="@channel.ThumbnailUrl" alt="@channel.ChannelTitle" style="width: 100px; height: 100px;">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@channel.ChannelTitle</h5>
+                                <p class="card-text">@channel.ChannelDescription</p>
+                                <a href="@Url.Action("Details", "YouTube", new { id = channel.ChannelUrl.Split('/').Last() })" class="btn btn-outline-primary rounded-pill">View</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="d-flex justify-content-end mb-4">
+                @if (!string.IsNullOrEmpty(ViewBag.PreviousPageToken))
+                {
+                    <form method="post" action="@Url.Action("Search", "YouTube")" class="mr-2">
+                        <input type="hidden" name="query" value="@ViewBag.Query" />
+                        <input type="hidden" name="pageToken" value="@ViewBag.PreviousPageToken" />
+                        <button type="submit" class="btn btn-danger bi bi-arrow-left-circle">  Previous</button>
+                    </form>
+                }
+
+                @if (!string.IsNullOrEmpty(ViewBag.NextPageToken))
+                {
+                    <form method="post" action="@Url.Action("Search", "YouTube")" class="mr-2">
+                        <input type="hidden" name="query" value="@ViewBag.Query" />
+                        <input type="hidden" name="pageToken" value="@ViewBag.NextPageToken" />
+                        <button type="submit" class="btn btn-success bi bi-arrow-right-circle">  Next</button>
+                    </form>
+                }
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(ViewBag.NoResultsMessage))
+        {
+            <p class="text-center text-secondary">@ViewBag.NoResultsMessage</p> 
+        }
+    }
+</div>

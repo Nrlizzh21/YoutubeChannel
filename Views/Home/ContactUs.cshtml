@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<br />
+<br />
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="container" style="max-width: 800px;">
+        <form>
+            <fieldset class="border rounded p-4 shadow-lg">
+                <legend class="w-auto px-2" style="font-weight: bold;">Get in Touch</legend>
+
+                <div class="mb-3">
+                    <label for="InputEmail1" class="form-label mt-2">Email address</label>
+                    <input type="email" class="form-control border-1 shadow-lg" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="textarea" class="form-label mt-2">Message</label>
+                    <textarea class="form-control rounded-3 border-1 shadow-lg" id="textarea" rows="10" placeholder="Your message..."></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary rounded-pill shadow">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
